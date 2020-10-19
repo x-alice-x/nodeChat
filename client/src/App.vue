@@ -5,7 +5,7 @@
       <p>Username: {{username}}</p>
       <p>Online: {{users.length}}</p>
     </div>
-    <chat-room :messages="messages" @sendMessage="sendMessage"></chat-room>
+    <chat-room :messages="messages" :myUsername="username" @sendMessage="sendMessage"></chat-room>
   </v-app>
 </template>
 
