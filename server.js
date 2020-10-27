@@ -13,7 +13,6 @@ io.on('connection', socket => {
     })
 
     socket.on('newuser', username => {
-        console.log(`${username} has join the chat`)
         socket.username = username
         users.push(socket)
 
@@ -21,11 +20,11 @@ io.on('connection', socket => {
     })
 
     socket.on('msg', msg => {
-        console.log(msg)
         let message = {
             index: index,
             username: socket.username,
-            msg: msg
+            msg: msg,
+            time: `${new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours()}:${new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()}`
         }
 
         messages.push(message)
@@ -34,7 +33,6 @@ io.on('connection', socket => {
     })
 
     socket.on('disconnect', () => {
-        console.log(`${socket.username} has left the chat`)
         io.emit('userLeft', socket.username)
         users.splice(users.indexOf(socket), 1)
     })

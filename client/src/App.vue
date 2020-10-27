@@ -1,12 +1,12 @@
 <template>
-  <v-app>
+  <div id="app">
     <div class="header">
       <h2>Chatroom</h2>
       <p>Username: {{username}}</p>
       <p>Online: {{users.length}}</p>
     </div>
     <chat-room :messages="messages" :myUsername="username" @sendMessage="sendMessage"></chat-room>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -43,9 +43,6 @@ export default {
       this.socket.on('userOnline', user => {
         this.users.push(user)
       })
-      this.socket.on('userOnline', user => {
-        this.users.push(user)
-      })
       this.socket.on('userLeft', user => {
         this.users.splice(this.users.indexOf(user), 1)
       })
@@ -60,7 +57,14 @@ export default {
 };
 </script>
 
+<style>
+html {
+    overflow-y: unset;
+    font-family: Helvetica, sans-serif;
+  }
+</style>
 <style lang="scss" scoped>
+  
   .header {
     margin: 0 auto;
   }
