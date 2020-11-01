@@ -21,7 +21,17 @@
       <v-btn type='submit' :disabled="!msg">Send</v-btn>
     </form>
   </div>
-  <div class="manage-message">XNJNJ</div>
+  <div class="manage-message">
+    <div class="manage-message__item" style="color: #447ed4">
+      Edit
+    </div>
+    <div class="manage-message__item">
+      Delete for me
+    </div>
+    <div class="manage-message__item">
+      Delete for everyone
+    </div>
+  </div>
 </div>
 </template>
 
@@ -148,6 +158,26 @@ name: "ChatRoom",
   display: none;
   position: absolute;
   z-index: 100;
+  background-color:#f8f8e7;
+  border-radius: 5px;
+  font-size: 12px;
+  &__item {
+    border-bottom: 1px solid #e6e5d7;
+    padding: 6px;
+    cursor: pointer;
+    transition: .2s;
+    color: #f74646;
+  }
+  &__item:last-child {
+    border: none;
+    border-radius: 0 0 5px 5px;
+  }
+  &__item:first-child {
+    border-radius: 5px 5px 0 0;
+  }
+  &__item:hover {
+    background-color: #f0f0d6;
+  }
 }
 
 </style>
