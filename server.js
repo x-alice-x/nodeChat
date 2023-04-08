@@ -8,28 +8,28 @@ let index = 0
 
 io.on('connection', socket => {
     socket.emit('loggedIn', {
-        users: users.map(s => s.username),
-        messages: messages
+        users: users.map(user => user.username),
+        messages,
     })
 
-    socket.on('newuser', username => {
+    socket.on('newUser', username => {
         socket.username = username
         users.push(socket)
 
         io.emit('userOnline', socket.username)
     })
 
-    socket.on('msg', msg => {
+    socket.on('message', msg => {
         let message = {
             index: index,
             username: socket.username,
-            msg: msg,
+            msg,
             time: `${new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours()}:${new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()}`
         }
 
         messages.push(message)
-        io.emit('msg', message)
-        index++
+        io.emit('message', message)
+        index += 1
     })
 
     socket.on('disconnect', () => {

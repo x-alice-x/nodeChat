@@ -35,7 +35,7 @@ export default {
       this.socket.on('loggedIn', data => {
         this.messages = data.messages
         this.users = data.users
-        this.socket.emit('newuser', this.username)
+        this.socket.emit('newUser', this.username)
       })
       this.listen()
     },
@@ -46,12 +46,12 @@ export default {
       this.socket.on('userLeft', user => {
         this.users.splice(this.users.indexOf(user), 1)
       })
-      this.socket.on('msg', msg => {
+      this.socket.on('message', msg => {
         this.messages.push(msg)
       })
     },
     sendMessage(message) {
-      this.socket.emit('msg', message)
+      this.socket.emit('message', message)
     }
   }
 };
@@ -64,7 +64,6 @@ html {
   }
 </style>
 <style lang="scss" scoped>
-  
   .header {
     margin: 0 auto;
   }
